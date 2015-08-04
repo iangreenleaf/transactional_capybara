@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = TransactionalCapybara::VERSION
   spec.authors       = ["Ian Young"]
   spec.email         = ["ian@iangreenleaf.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Support for DB transactions with Capybara}
+  spec.summary       = %q{Speed up your test suite with database transactions, without losing your mind to Capybara connection problems. Supports shared connections, plus AJAX watchers to avoid common deadlock scenarios.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
