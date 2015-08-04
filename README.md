@@ -1,24 +1,102 @@
-# TransactionalCapybara
+# Database Transactions 💜 Capybara
 
-TODO: Write a gem description
+You want your specs to use transactions for speed 🐎🐎🐎.
 
-## Installation
+But as soon as you try it with Capybara, things go wrong 💻💥.
 
-Add this line to your application's Gemfile:
+Don't flip tables.
+Use this instead.
+
+## Setup ##
+
+Add it to your Gemfile, of course:
 
     gem 'transactional_capybara'
 
-And then execute:
+And then initialize it in your tests…
 
-    $ bundle
+### RSpec ###
 
-Or install it yourself as:
+In `rails_helper.rb` (or `spec_helper.rb`):
 
-    $ gem install transactional_capybara
+```ruby
+require "transactional_capybara/rspec"
+```
 
-## Usage
+Your database connection is automatically shared between threads, and all specs tagged with `js: true` will wait for AJAX requests to finish before continuing.
 
-TODO: Write usage instructions here
+Wow. Much convenience. So relax.
+
+### All other test frameworks ###
+
+Somewhere near the beginning of your test initialization:
+
+```ruby
+TransactionalCapybara.share_connection
+```
+
+And then make sure to define a hook that will run after each Capybara test:
+
+```ruby
+after :each do
+  TransactionalCapybara::AjaxHelpers.wait_for_ajax(page)
+end
+```
+
+## DatabaseCleaner ##
+
+For this gem to be able to help with AJAX, it needs to be invoked *before* DatabaseCleaner rolls back the transaction.
+
+You should be good to go if your setup looks like this:
+
+```ruby
+config.around(:each) do |example|
+  DatabaseCleaner.cleaning do
+    example.run
+  end
+end
+```
+
+But if you're using before/after hooks to clean, like:
+
+```ruby
+before :each do
+  DatabaseCleaner.start
+end
+
+after :each do
+  DatabaseCleaner.clean
+end
+```
+
+Then you need to make sure the AJAX hook runs first.
+Declare it before the DatabaseCleaner code and you should be set:
+
+```ruby
+after :each do
+  TransactionalCapybara::AjaxHelpers.wait_for_ajax(page)
+end
+
+before :each do
+  DatabaseCleaner.start
+end
+
+after :each do
+  DatabaseCleaner.clean
+end
+```
+
+
+## Support ##
+
+Right now this gem automatically fixes the following things:
+
+ * ActiveRecord
+ * jQuery
+ * Angular
+
+Don't see something you want?
+I'd love a pull request, or even just a friendly inquiry!
 
 ## Contributing
 
@@ -26,4 +104,5 @@ TODO: Write usage instructions here
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+5. Think about how I'm a bad person for not writing any tests yet
+6. Create new Pull Request
