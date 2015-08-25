@@ -10,6 +10,13 @@ module TransactionalCapybara
       end
 
       def finished_all_ajax_requests?
+        capybara_sessions.all? do |session|
+          puts session.inspect
+          PageWaiting.new(session).finished_ajax_requests?
+        end
+      end
+
+      def finished_ajax_requests?
         (
           angular_requests
           + jquery_requests
@@ -22,6 +29,10 @@ module TransactionalCapybara
             sleep(0.01)
           end
         end
+      end
+
+      def capybara_sessions
+        Capybara.send :session_pool
       end
 
       private
