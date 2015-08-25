@@ -36,10 +36,12 @@ module TransactionalCapybara
 
       private
 
+      # Hack into Capybara's private interface to get access to all sessions
       def capybara_sessions
         Capybara.send :session_pool
       end
 
+      # Another hack, to see if Capybara sessions have been used
       def is_session_touched?(session)
          session.instance_variable_get(:@touched)
       end
