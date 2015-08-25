@@ -11,7 +11,11 @@ Use this instead.
 
 Add it to your Gemfile, of course:
 
-    gem 'transactional_capybara'
+```ruby
+group :test do
+  gem 'transactional_capybara'
+end
+```
 
 And then initialize it in your tests…
 
