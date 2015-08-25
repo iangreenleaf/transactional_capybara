@@ -10,9 +10,12 @@ module TransactionalCapybara
       end
 
       def finished_all_ajax_requests?
-        capybara_sessions.all? do |session|
-          puts session.inspect
-          PageWaiting.new(session).finished_ajax_requests?
+        capybara_sessions.all? do |name, session|
+          if is_session_touched?(session)
+            PageWaiting.new(session).finished_ajax_requests?
+          else
+            true
+          end
         end
       end
 
@@ -31,11 +34,16 @@ module TransactionalCapybara
         end
       end
 
+      private
+
       def capybara_sessions
         Capybara.send :session_pool
       end
 
-      private
+      def is_session_touched?(session)
+         session.instance_variable_get(:@touched)
+      end
+
       def run_js(expr)
         @page.execute_script(expr)
       end
