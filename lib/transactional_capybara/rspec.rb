@@ -1,3 +1,5 @@
+require 'transactional_capybara'
+
 RSpec.configure do |config|
   TransactionalCapybara.share_connection
   config.after(:each, js: true) do
