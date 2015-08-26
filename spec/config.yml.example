@@ -1,0 +1,18 @@
+---
+database:
+  mysql:
+    adapter: mysql2
+    host: localhost
+    username: transactional_capybara
+    password: abcd1234
+    database: transactional_capybara
+  sqlite:
+    adapter: sqlite3
+    host: localhost
+    database: tmp/test.db
+  postgres:
+    adapter: postgresql
+    host: localhost
+    username: transactional_capybara
+    password: abcd1234
+    database: transactional_capybara

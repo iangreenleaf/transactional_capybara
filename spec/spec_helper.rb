@@ -1,13 +1,11 @@
+require 'yaml'
+db_type = ENV['DB'] || 'sqlite'
+db_config = YAML.load_file(File.join(File.dirname(__FILE__), "config.yml"))
+db = db_config["database"][db_type]
 
 require 'active_record'
-
-ActiveRecord::Base.establish_connection(
-  :adapter  => "mysql2",
-  :host     => "localhost",
-  :username => "transactional_capybara",
-  :password => nil,
-  :database => "transactional_capybara"
-)
+ActiveRecord::Base.establish_connection(db)
+load File.join(File.dirname(__FILE__), "support/schema.rb")
 
 require 'capybara/rspec'
 require 'transactional_capybara/rspec'

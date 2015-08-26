@@ -110,3 +110,12 @@ I'd love a pull request, or even just a friendly inquiry!
 4. Push to the branch (`git push origin my-new-feature`)
 5. Think about how I'm a bad person for not writing any tests yet
 6. Create new Pull Request
+
+### Running the tests ###
+
+```
+cp spec/support/config.yml{.example,} # Edit as necessary
+DB=sqlite rspec spec
+```
+
+You can run the specs with other databases as well, but you will have to create the databases and users manually first.
