@@ -26,12 +26,15 @@ module TransactionalCapybara
         ).zero?
       end
 
+      # TODO: timeout each individual session
       def wait_until(timeout=Capybara.default_wait_time)
         Timeout.timeout(timeout) do
           until yield
             sleep(0.01)
           end
         end
+      rescue Timeout::Error
+        # Oh well, hopefully it finished!
       end
 
       private
