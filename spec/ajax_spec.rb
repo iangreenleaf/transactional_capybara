@@ -36,6 +36,22 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
     expect(find(".message").text).to eq(@expected_message)
   end
 
+  context "mixed in" do
+    include TransactionalCapybara::AjaxHelpers
+    it "provides wait_for_ajax helper" do
+      visit "/page_with_ajax"
+      expect(page).to have_content("Hello")
+      click_link "Do AJAX"
+      Thread.fork do
+        sleep 0.5
+        AjaxServer.should_return_from_ajax = true
+      end
+      expect(find(".message").text).not_to eq(@expected_message)
+      wait_for_ajax
+      expect(find(".message").text).to eq(@expected_message)
+    end
+  end
+
   context "after hook", check_result_after: true do
     it "automatically waits for AJAX" do
       visit "/page_with_ajax"
