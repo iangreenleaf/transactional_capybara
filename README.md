@@ -147,6 +147,8 @@ Right now this gem automatically fixes the following things:
  * jQuery
  * Angular
 
+Tested on Capybara 2.4.x, may not work on other major versions.
+
 Don't see something you want?
 I'd love a pull request, or even just a friendly inquiry!
 
