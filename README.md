@@ -1,5 +1,7 @@
 # Database Transactions 💜 Capybara
 
+[![Build Status]](https://travis-ci.org/iangreenleaf/transactional_capybara)
+
 You want your specs to use transactions for speed 🐎🐎🐎.
 
 But as soon as you try it with Capybara, things go wrong 💻💥.
@@ -119,3 +121,5 @@ DB=sqlite rspec spec
 ```
 
 You can run the specs with other databases as well, but you will have to create the databases and users manually first.
+
+[Build Status]: https://travis-ci.org/iangreenleaf/transactional_capybara.svg?branch=master
