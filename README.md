@@ -49,6 +49,50 @@ after :each do
 end
 ```
 
+## Manually waiting for AJAX ##
+
+You might have situations where you need to wait for AJAX calls to complete at times other than teardown.
+For example, you might have a pattern like this if you access models directly for either setup or verification of results:
+
+```ruby
+visit "/page-that-fires-ajax"
+Model.where(whatever).first
+```
+
+This can still fail!
+The ideal solution is to avoid direct database manipulation in integration tests.
+However, if you insist on doing this, you can stay safe by waiting for AJAX to complete before continuing:
+
+```ruby
+visit "/page-that-fires-ajax"
+TransactionalCapybara::AjaxHelpers.wait_for_ajax(page)
+Model.where(whatever).first
+```
+
+If you'd like the helper more easily accessible, just mix the `AjaxHelpers` module into your test suite.
+In RSpec, you can do this in the config block:
+
+```ruby
+RSpec.configure do |config|
+  config.include TransactionalCapybara::AjaxHelpers
+end
+```
+Or in any example group:
+
+```ruby
+describe "awesome web stuff" do
+  include TransactionalCapybara::AjaxHelpers
+end
+```
+
+Now the helper is easily available:
+
+```ruby
+visit "/page-that-fires-ajax"
+wait_for_ajax
+Model.where(whatever).first
+```
+
 ## DatabaseCleaner ##
 
 For this gem to be able to help with AJAX, it needs to be invoked *before* DatabaseCleaner rolls back the transaction.
