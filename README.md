@@ -2,9 +2,9 @@
 
 [![Build Status]](https://travis-ci.org/iangreenleaf/transactional_capybara)
 
-You want your specs to use transactions for speed 🐎🐎🐎.
+You want your specs to use transactions for speed 🐎🐎🐎
 
-But as soon as you try it with Capybara, things go wrong 💻💥.
+But as soon as you try it with Capybara, things go wrong 💻💥
 
 Don't flip tables.
 Use this instead.
