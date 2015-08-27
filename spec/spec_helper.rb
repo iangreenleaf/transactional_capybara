@@ -8,10 +8,15 @@ ActiveRecord::Base.establish_connection(db)
 load File.join(File.dirname(__FILE__), "support/schema.rb")
 
 require 'capybara/rspec'
-require 'transactional_capybara/rspec'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
+
+  config.after(:each, check_result_after: true) do
+    expect(find(".message").text).to eq("foobar")
+  end
 end
+
+require 'transactional_capybara/rspec'
