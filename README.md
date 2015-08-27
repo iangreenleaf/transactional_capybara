@@ -9,6 +9,8 @@ But as soon as you try it with Capybara, things go wrong 💻💥.
 Don't flip tables.
 Use this instead.
 
+For a detailed explanation of how this works, refer to the [introductory blog post].
+
 ## Setup ##
 
 Add it to your Gemfile, of course:
@@ -167,3 +169,4 @@ DB=sqlite rspec spec
 You can run the specs with other databases as well, but you will have to create the databases and users manually first.
 
 [Build Status]: https://travis-ci.org/iangreenleaf/transactional_capybara.svg?branch=master
+[introductory blog post]: http://technotes.iangreenleaf.com/posts/the-one-true-guide-to-database-transactions-with-capybara.html
