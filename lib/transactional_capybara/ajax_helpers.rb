@@ -50,7 +50,7 @@ module TransactionalCapybara
       end
 
       def run_js(expr)
-        @page.execute_script(expr)
+        @page.evaluate_script(expr)
       end
 
       def angular?
