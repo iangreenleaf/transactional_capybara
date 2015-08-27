@@ -9,8 +9,22 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
     TestValue.create! content: @expected_message
   end
 
-  it "waits for AJAX" do
+  it "waits for AJAX from jQuery" do
     visit "/page_with_ajax"
+    expect(page).to have_content("Hello")
+    click_link "Do AJAX"
+    Thread.fork do
+      sleep 0.5
+      AjaxServer.should_return_from_ajax = true
+    end
+    expect(find(".message").text).not_to eq(@expected_message)
+    TransactionalCapybara::AjaxHelpers.wait_for_ajax(page)
+    expect(find(".message").text).to eq(@expected_message)
+  end
+
+  it "waits for AJAX from Angular" do
+    pending "Haven't built the test page yet"
+    visit "/ajax/angular"
     expect(page).to have_content("Hello")
     click_link "Do AJAX"
     Thread.fork do
