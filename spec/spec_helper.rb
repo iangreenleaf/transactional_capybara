@@ -8,6 +8,10 @@ ActiveRecord::Base.establish_connection(db)
 load File.join(File.dirname(__FILE__), "support/schema.rb")
 
 require 'capybara/rspec'
+require 'capybara-webkit'
+
+capybara_driver = ENV['DRIVER'] || 'selenium'
+Capybara.javascript_driver = capybara_driver.to_sym
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

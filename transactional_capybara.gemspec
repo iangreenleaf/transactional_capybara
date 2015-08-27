@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "sqlite3"
   spec.add_development_dependency "pg"
   spec.add_development_dependency "selenium-webdriver"
+  spec.add_development_dependency "capybara-webkit"
 end
