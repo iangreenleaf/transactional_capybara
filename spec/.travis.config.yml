@@ -1,0 +1,14 @@
+---
+database:
+  mysql:
+    adapter: mysql2
+    host: localhost
+    username: travis
+    database: transactional_capybara_test
+  sqlite:
+    adapter: sqlite3
+    database: ":memory:"
+  postgres:
+    adapter: postgresql
+    username: postgres
+    database: transactional_capybara_test
