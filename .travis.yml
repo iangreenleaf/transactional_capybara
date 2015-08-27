@@ -12,4 +12,4 @@ before_script:
   - psql -c 'create database transactional_capybara_test;' -U postgres
   - "cp spec/{.travis.,}config.yml"
 script: bundle exec rake test:all
-sudo: false
+cache: bundler
