@@ -15,7 +15,7 @@ RSpec.configure do |config|
   end
 
   config.after(:each, check_result_after: true) do
-    expect(find(".message").text).to eq("foobar")
+    expect(find(".message").text).to eq(@expected_message)
   end
 end
 
