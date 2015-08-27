@@ -12,6 +12,7 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
   it "waits for AJAX" do
     visit "/page_with_ajax"
     expect(page).to have_content("Hello")
+    click_link "Do AJAX"
     Thread.fork do
       sleep 0.5
       AjaxServer.should_return_from_ajax = true
@@ -25,6 +26,7 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
     it "automatically waits for AJAX" do
       visit "/page_with_ajax"
       expect(page).to have_content("Hello")
+      click_link "Do AJAX"
       Thread.fork do
         sleep 0.5
         AjaxServer.should_return_from_ajax = true
@@ -37,6 +39,7 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
     using_session :foo do
       visit "/page_with_ajax"
       expect(page).to have_content("Hello")
+      click_link "Do AJAX"
     end
 
     using_session :bar do
@@ -59,6 +62,7 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
     using_session :bar do
       visit "/page_with_ajax"
       expect(page).to have_content("Hello")
+      click_link "Do AJAX"
     end
 
     Thread.fork do
