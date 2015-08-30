@@ -20,10 +20,7 @@ module TransactionalCapybara
       end
 
       def finished_ajax_requests?
-        (
-          angular_requests
-          + jquery_requests
-        ).zero?
+        ( angular_requests + jquery_requests ).zero?
       end
 
       # TODO: timeout each individual session
