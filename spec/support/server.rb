@@ -3,6 +3,8 @@ require 'tilt/erb'
 require_relative 'model'
 
 class AjaxServer < Sinatra::Base
+  set :public_folder, File.dirname(__FILE__) + '/vendor'
+
   cattr_accessor :should_return_from_ajax
 
   get "/boring_page" do
