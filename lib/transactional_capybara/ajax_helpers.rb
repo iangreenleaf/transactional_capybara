@@ -54,12 +54,12 @@ module TransactionalCapybara
       end
 
       def angular?
-        run_js("!!window.angular") && run_js("angular.element('[ng-app]').length") > 0
+        run_js("!!window.angular") && run_js("!!document.querySelector('[ng-app]')")
       end
 
       def angular_requests
         if angular?
-          run_js("angular.element('[ng-app]').injector().get('$http').pendingRequests.length")
+          run_js("angular.element(document.querySelector('[ng-app]')).injector().get('$http').pendingRequests.length")
         else
           0
         end
