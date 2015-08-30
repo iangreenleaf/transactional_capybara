@@ -10,7 +10,7 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
   end
 
   it "waits for AJAX from jQuery" do
-    visit "/page_with_ajax"
+    visit "/ajax/jquery"
     expect(page).to have_content("Hello")
     click_link "Do AJAX"
     Thread.fork do
@@ -39,7 +39,7 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
   context "mixed in" do
     include TransactionalCapybara::AjaxHelpers
     it "provides wait_for_ajax helper" do
-      visit "/page_with_ajax"
+      visit "/ajax/jquery"
       expect(page).to have_content("Hello")
       click_link "Do AJAX"
       Thread.fork do
@@ -54,7 +54,7 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
 
   context "after hook", check_result_after: true do
     it "automatically waits for AJAX" do
-      visit "/page_with_ajax"
+      visit "/ajax/jquery"
       expect(page).to have_content("Hello")
       click_link "Do AJAX"
       Thread.fork do
@@ -67,7 +67,7 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
 
   it "waits on all sessions" do
     using_session :foo do
-      visit "/page_with_ajax"
+      visit "/ajax/jquery"
       expect(page).to have_content("Hello")
       click_link "Do AJAX"
     end
@@ -90,7 +90,7 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
     AjaxServer.should_return_from_ajax = false
 
     using_session :bar do
-      visit "/page_with_ajax"
+      visit "/ajax/jquery"
       expect(page).to have_content("Hello")
       click_link "Do AJAX"
     end

@@ -1,11 +1,11 @@
 <p class="message">Nothing to see</p>
 <a href="#" class="do-ajax">Do AJAX</a>
 
-<script src="jquery.js"></script>
+<script src="/jquery.js"></script>
 <script>
 jQuery(function() {
   jQuery(".do-ajax").click(function() {
-    jQuery.ajax('/ajax_endpoint', {
+    jQuery.ajax('/ajax/endpoint', {
       success: function(data) {
         jQuery(".message").text(data);
       }

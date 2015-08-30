@@ -11,11 +11,11 @@ class AjaxServer < Sinatra::Base
     erb "Hi", layout: :basic
   end
 
-  get "/page_with_ajax" do
-    erb :page_with_ajax, layout: :basic
+  get "/ajax/jquery" do
+    erb :jquery, layout: :basic
   end
 
-  get "/ajax_endpoint" do
+  get "/ajax/endpoint" do
     until AjaxServer.should_return_from_ajax do
       sleep 0.01
     end
