@@ -8,6 +8,7 @@ ActiveRecord::Base.establish_connection(db)
 load File.join(File.dirname(__FILE__), "support/schema.rb")
 
 require 'capybara/rspec'
+require 'capybara/poltergeist'
 require 'capybara-webkit'
 
 capybara_driver = ENV['DRIVER'] || 'selenium'

@@ -11,7 +11,7 @@ namespace :test do
     db_config = YAML.load_file(File.join(File.dirname(__FILE__), "spec/config.yml"))
     db_config["database"].keys.each do |db_name|
       ENV['DB'] = db_name
-      %w[selenium webkit].each do |driver|
+      %w[selenium webkit poltergeist].each do |driver|
         ENV['DRIVER'] = driver
         puts ENV.to_hash.slice 'DRIVER', 'DB'
         Rake::Task['test:rspec'].reenable
