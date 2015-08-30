@@ -15,6 +15,10 @@ class AjaxServer < Sinatra::Base
     erb :jquery, layout: :basic
   end
 
+  get "/ajax/angular" do
+    erb :angular, layout: :basic
+  end
+
   get "/ajax/endpoint" do
     until AjaxServer.should_return_from_ajax do
       sleep 0.01

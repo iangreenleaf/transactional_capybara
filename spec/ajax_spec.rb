@@ -23,7 +23,6 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
   end
 
   it "waits for AJAX from Angular" do
-    pending "Haven't built the test page yet"
     visit "/ajax/angular"
     expect(page).to have_content("Hello")
     click_link "Do AJAX"

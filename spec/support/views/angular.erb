@@ -1,0 +1,23 @@
+<div ng-app="ajaxApp">
+  <div ng-controller="AjaxController as ctrl">
+    <p class="message">{{ctrl.message}}</p>
+    <a href="#" ng-click="ctrl.doAjax()">Do AJAX</a>
+
+    <script src="/angular.js"></script>
+    <script>
+angular.module('ajaxApp', [])
+  .controller('AjaxController', function($http) {
+    var self = this;
+
+    self.message = "Hello";
+
+    self.doAjax = function() {
+      $http.get("/ajax/endpoint").then(function(response) {
+        self.message = response.data;
+      });
+    };
+  });
+    </script>
+  </div>
+</div>
+
