@@ -24,7 +24,7 @@ module TransactionalCapybara
       end
 
       # TODO: timeout each individual session
-      def wait_until(timeout=Capybara.default_wait_time)
+      def wait_until(timeout=default_timeout)
         Timeout.timeout(timeout) do
           until yield
             sleep(0.01)
@@ -39,6 +39,16 @@ module TransactionalCapybara
       # Hack into Capybara's private interface to get access to all sessions
       def capybara_sessions
         Capybara.send :session_pool
+      end
+
+      # Handle Capybara.default_wait_time deprecation
+      # https://github.com/jnicklas/capybara/pull/1502
+      def default_timeout
+        @default_timeout ||= begin
+          Capybara.respond_to?(:default_max_wait_time) ?
+            Capybara.default_max_wait_time :
+            Capybara.default_wait_time
+        end
       end
 
       # Another hack, to see if Capybara sessions have been used
