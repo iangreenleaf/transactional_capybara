@@ -156,9 +156,9 @@ I'd love a pull request, or even just a friendly inquiry!
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Make your changes. Don't forget to add a test!
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Think about how I'm a bad person for not writing any tests yet
 6. Create new Pull Request
 
 ### Running the tests ###
