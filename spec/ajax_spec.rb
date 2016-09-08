@@ -104,4 +104,18 @@ RSpec.describe "server with AJAX", type: :feature, js: true do
       expect(find(".message").text).to eq(@expected_message)
     end
   end
+
+  it "uses Capybara.default_max_wait_time if available" do
+    allow(Capybara).to receive(:default_max_wait_time).and_return(5)
+    expect(Capybara).to receive(:default_max_wait_time).at_least(:once)
+
+    TransactionalCapybara::AjaxHelpers.wait_for_ajax(page)
+  end
+
+  it "fallbacks on deprecated Capybara.default_wait_time" do
+    allow(Capybara).to receive(:respond_to?).with(:default_max_wait_time).and_return(false)
+    expect(Capybara).to receive(:default_wait_time).at_least(:once)
+
+    TransactionalCapybara::AjaxHelpers.wait_for_ajax(page)
+  end
 end
