@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    transactional_capybara (0.1.0.pre.3)
+    transactional_capybara (0.1.0)
       capybara
 
 GEM
