@@ -1,10 +1,8 @@
 require 'yaml'
-db_type = ENV['DB'] || 'sqlite'
-db_config = YAML.load_file(File.join(File.dirname(__FILE__), "config.yml"))
-db = db_config["database"][db_type]
+ENV['DB'] ||= 'sqlite'
+ENV['ORM'] ||= 'active_record'
 
-orm = ENV['ORM'] || 'active_record'
-require_relative "support/#{orm}_setup.rb"
+require_relative "support/#{ENV['ORM']}_setup.rb"
 
 require 'capybara/rspec'
 require 'capybara/poltergeist'
