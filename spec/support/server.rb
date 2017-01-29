@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'tilt/erb'
-require_relative 'model'
 
 class AjaxServer < Sinatra::Base
   set :public_folder, File.dirname(__FILE__) + '/vendor'
