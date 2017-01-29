@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "sinatra"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "activerecord"
+  spec.add_development_dependency "sequel"
   spec.add_development_dependency "mysql2"
   spec.add_development_dependency "sqlite3"
   spec.add_development_dependency "pg"
