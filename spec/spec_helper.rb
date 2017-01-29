@@ -3,9 +3,8 @@ db_type = ENV['DB'] || 'sqlite'
 db_config = YAML.load_file(File.join(File.dirname(__FILE__), "config.yml"))
 db = db_config["database"][db_type]
 
-require 'active_record'
-ActiveRecord::Base.establish_connection(db)
-load File.join(File.dirname(__FILE__), "support/schema.rb")
+orm = ENV['ORM'] || 'active_record'
+require_relative "support/#{orm}_setup.rb"
 
 require 'capybara/rspec'
 require 'capybara/poltergeist'
