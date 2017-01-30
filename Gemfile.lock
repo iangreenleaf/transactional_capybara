@@ -76,6 +76,7 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
+    sequel (4.42.1)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -105,6 +106,7 @@ DEPENDENCIES
   rake
   rspec
   selenium-webdriver
+  sequel
   sinatra
   sqlite3
   transactional_capybara!

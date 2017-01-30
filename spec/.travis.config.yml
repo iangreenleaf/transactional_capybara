@@ -6,7 +6,9 @@ database:
     username: travis
     database: transactional_capybara_test
   sqlite:
-    adapter: sqlite3
+    adapter:
+      active_record: sqlite3
+      sequel: sqlite
     database: ":memory:"
   postgres:
     adapter: postgresql

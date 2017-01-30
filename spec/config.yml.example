@@ -7,7 +7,9 @@ database:
     password: abcd1234
     database: transactional_capybara
   sqlite:
-    adapter: sqlite3
+    adapter:
+      active_record: sqlite3
+      sequel: sqlite
     host: localhost
     database: tmp/test.db
   postgres:

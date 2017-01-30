@@ -1,5 +1,4 @@
 require_relative 'support/server'
-require_relative 'support/model'
 
 RSpec.describe "server with AJAX", type: :feature, js: true do
   before do
