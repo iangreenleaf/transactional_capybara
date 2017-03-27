@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    transactional_capybara (0.1.0)
+    transactional_capybara (0.2.0)
       capybara
 
 GEM
@@ -112,4 +112,4 @@ DEPENDENCIES
   transactional_capybara!
 
 BUNDLED WITH
-   1.12.5
+   1.14.4
