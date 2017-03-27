@@ -44,4 +44,6 @@ task :bundle do
   Bundler::CLI.start(['install'])
 end
 
-Rake::Task['release:guard_clean'].enhance [:bundle]
+if Rake::Task.task_defined? 'release:guard_clean'
+  Rake::Task['release:guard_clean'].enhance [:bundle]
+end
