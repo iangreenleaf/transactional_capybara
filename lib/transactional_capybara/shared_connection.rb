@@ -1,15 +1,12 @@
-class ActiveRecord::Base
-  mattr_accessor :shared_connection
-  @@shared_connection = nil
-
-  def self.connection
-    @@shared_connection || retrieve_connection
-  end
-end
-
 module TransactionalCapybara
   module_function
   def share_connection
-    ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+    #noop is default
   end
+end
+if defined?(ActiveRecord::Base)
+  require_relative './shared_connection/active_record'
+end
+if defined?(Sequel::Model)
+  require_relative './shared_connection/sequel'
 end

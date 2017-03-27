@@ -138,12 +138,16 @@ after :each do
 end
 ```
 
+## Sequel ##
+If you want to have shared database connections with sequel just
+add the option `single_threaded: true` to your sequel connection in test.
 
 ## Support ##
 
-Right now this gem automatically fixes the following things:
+Right now this gem automatically handles the following things:
 
  * ActiveRecord
+ * Sequel
  * jQuery
  * Angular
 
