@@ -1,4 +1,5 @@
 require "bundler/gem_tasks"
+require "bundler/cli"
 require 'rspec/core/rake_task'
 require 'yaml'
 require 'active_support'
@@ -38,3 +39,9 @@ namespace :test do
     AjaxServer.run!
   end
 end
+
+task :bundle do
+  Bundler::CLI.start(['install'])
+end
+
+Rake::Task['release:guard_clean'].enhance [:bundle]
