@@ -11,6 +11,20 @@ Use this instead.
 
 For a detailed explanation of how this works, refer to the [introductory blog post].
 
+## Support ##
+
+Right now this gem automatically handles the following things:
+
+ * ActiveRecord
+ * Sequel
+ * jQuery
+ * Angular
+
+Tested on Capybara 2.4.x, may not work on other major versions.
+
+Don't see something you want?
+I'd love a pull request, or even just a friendly inquiry!
+
 ## Setup ##
 
 Add it to your Gemfile, of course:
@@ -141,20 +155,6 @@ end
 ## Sequel ##
 If you want to have shared database connections with sequel just
 add the option `single_threaded: true` to your sequel connection in test.
-
-## Support ##
-
-Right now this gem automatically handles the following things:
-
- * ActiveRecord
- * Sequel
- * jQuery
- * Angular
-
-Tested on Capybara 2.4.x, may not work on other major versions.
-
-Don't see something you want?
-I'd love a pull request, or even just a friendly inquiry!
 
 ## Contributing
 
