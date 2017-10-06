@@ -138,18 +138,15 @@ end
 ```
 
 Then you need to make sure the AJAX hook runs first.
-Declare it before the DatabaseCleaner code and you should be set:
+Declare it before the DatabaseCleaner cleanup and you should be set:
 
 ```ruby
-after :each do
-  TransactionalCapybara::AjaxHelpers.wait_for_ajax(page)
-end
-
 before :each do
   DatabaseCleaner.start
 end
 
 after :each do
+  TransactionalCapybara::AjaxHelpers.wait_for_ajax(page)
   DatabaseCleaner.clean
 end
 ```
