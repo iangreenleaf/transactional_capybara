@@ -173,5 +173,13 @@ DB=sqlite rspec spec
 
 You can run the specs with other databases as well, but you will have to create the databases and users manually first.
 
+You can run the tests against all combinations of supported databases, web drivers, and ORMs with:
+
+```
+rake test:all
+```
+
+That rake task may be examined to find all the options currently under test, as well.
+
 [Build Status]: https://travis-ci.org/iangreenleaf/transactional_capybara.svg?branch=master
 [introductory blog post]: http://technotes.iangreenleaf.com/posts/the-one-true-guide-to-database-transactions-with-capybara.html
