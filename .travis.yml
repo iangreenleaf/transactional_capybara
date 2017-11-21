@@ -5,9 +5,17 @@ rvm:
   - "2.1"
   - "2.2"
   - "2.3.1"
+env:
+  - MOZ_HEADLESS=1
+addons:
+  firefox: latest
 before_install:
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
-  - "export DISPLAY=:99.0"
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux64.tar.gz
+  - mkdir geckodriver
+  - tar -xzf geckodriver*.tar.gz -C geckodriver
+  - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16
+  - export PATH=$PATH:$PWD/geckodriver
+  - export DISPLAY=:99.0
 before_script:
   - mysql -e "create database IF NOT EXISTS transactional_capybara_test;" -uroot
   - psql -c 'create database transactional_capybara_test;' -U postgres
