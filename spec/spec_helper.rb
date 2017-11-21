@@ -19,6 +19,10 @@ RSpec.configure do |config|
   config.after(:each, check_result_after: true) do
     expect(find(".message").text).to eq(@expected_message)
   end
+
+  def capybara_version_matching(spec)
+    Gem::Dependency.new('capybara', spec).match?('capybara', Capybara::VERSION)
+  end
 end
 
 require 'transactional_capybara/rspec'
