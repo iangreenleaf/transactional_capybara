@@ -45,7 +45,7 @@ In `rails_helper.rb` (or `spec_helper.rb`):
 require "transactional_capybara/rspec"
 ```
 
-If you're using ActiveRecord::Base.maintain_test_schema! in you rails_helper.rb (or spec_helper.rb), make sure it is invoked before requiring transactional_capybara. Failure to do so might cause some non-deterministic connection failures.
+If you're using `ActiveRecord::Base.maintain_test_schema!` in you `rails_helper.rb` (or `spec_helper.rb`), make sure it is invoked before requiring transactional_capybara. Failure to do so might cause some non-deterministic connection failures.
 
 Your database connection is automatically shared between threads, and all specs tagged with `js: true` will wait for AJAX requests to finish before continuing.
 
@@ -73,7 +73,7 @@ You might have situations where you need to wait for AJAX calls to complete at t
 For example, you might have a pattern like this if you access models directly for either setup or verification of results:
 
 ```ruby
-visit "/page-that-fires-ajax"
+visit '/page-that-fires-ajax'
 Model.where(whatever).first
 ```
 
@@ -82,7 +82,7 @@ The ideal solution is to avoid direct database manipulation in integration tests
 However, if you insist on doing this, you can stay safe by waiting for AJAX to complete before continuing:
 
 ```ruby
-visit "/page-that-fires-ajax"
+visit '/page-that-fires-ajax'
 TransactionalCapybara::AjaxHelpers.wait_for_ajax(page)
 Model.where(whatever).first
 ```
@@ -98,7 +98,7 @@ end
 Or in any example group:
 
 ```ruby
-describe "awesome web stuff" do
+describe 'awesome web stuff' do
   include TransactionalCapybara::AjaxHelpers
 end
 ```
@@ -106,7 +106,7 @@ end
 Now the helper is easily available:
 
 ```ruby
-visit "/page-that-fires-ajax"
+visit '/page-that-fires-ajax'
 wait_for_ajax
 Model.where(whatever).first
 ```
