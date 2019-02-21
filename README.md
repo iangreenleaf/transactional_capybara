@@ -45,7 +45,7 @@ In `rails_helper.rb` (or `spec_helper.rb`):
 require "transactional_capybara/rspec"
 ```
 
-If you're using `ActiveRecord::Base.maintain_test_schema!` in you `rails_helper.rb` (or `spec_helper.rb`), make sure it is invoked before requiring transactional_capybara. Failure to do so might cause some non-deterministic connection failures.
+If you're using `ActiveRecord::Base.maintain_test_schema!` in your `rails_helper.rb` (or `spec_helper.rb`), make sure it is invoked before requiring transactional_capybara. Failure to do so might cause some non-deterministic connection failures.
 
 Your database connection is automatically shared between threads, and all specs tagged with `js: true` will wait for AJAX requests to finish before continuing.
 
